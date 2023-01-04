@@ -1,0 +1,60 @@
+<button mat-button [matMenuTriggerFor]="Admin">Administration</button>
+<button mat-button [matMenuTriggerFor]="Admin">Menüpunkt 2</button>
+
+<!-- #docregion sub-menu -->
+<mat-menu #Admin="matMenu">
+  <button mat-menu-item>Kunden</button>
+  <button mat-menu-item>Lieferanten</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item>
+    <mat-icon>dialpad</mat-icon>
+    <span>Icon Support</span>
+    ...
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item [matMenuTriggerFor]="Cities">Cities</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item [matMenuTriggerFor]="Strassen">Straßen</button>
+  <div *ngIf="toDisplay">
+    <button mat-menu-item>Versteckt</button>
+  </div>
+</mat-menu>
+
+<mat-menu #Cities="matMenu">
+  <button mat-menu-item>Citys</button>
+  <button mat-menu-item>Citygroups</button>
+  <button mat-menu-item>Postal Codes</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item>Textbausteine</button>
+</mat-menu>
+<!-- #enddocregion sub-menu -->
+
+<mat-menu #Strassen="matMenu">
+  <button mat-menu-item>Straßen</button>
+  <button mat-menu-item [matMenuTriggerFor]="u1">Mehrere Untermenüs</button>
+  <button mat-menu-item>...</button>
+</mat-menu>
+<mat-menu #u1="matMenu">
+  <button mat-menu-item>...</button>
+</mat-menu>
+<mat-divider ></mat-divider>
+<label> Im Prototyp müssen Menüs abbildbar sein. Das sind entweder Dialogmenüs wie in der Abbildung oder Kontextmenüs in z.B. Tabellen.
+Es müssen Menübäume/mehrstufige Menüs erstellt werden können.
+Die Menüpunkte müssen zur Laufzeit aktiviert/deaktiviert werden können.
+Es müssen Separatoren für die thematische Aufteilung eines Menüs vorhanden sein.
+</label>
+<mat-divider ></mat-divider>
+<label>
+Testfall:
+Eine GUI und eine Tabelle wird mit einem Menü versehen.
+Die Menüs enthalten mind. ein Submenü.
+Auf jeder Menü-Ebene ist mind. ein Eintrag deaktiviert.
+Über eine Checkbox im Dialog kann die Aktivierung/Deaktivierung der Menüeinträge gesteuert werden. </label>
+<mat-divider ></mat-divider>
+<label> Schalte zusätliche Menüpunkte ein </label>
+<button (click)="toggleData()">Click</button>
+<mat-checkbox [(ngModel)]="toDisplay">Verstecktes Objekt an </mat-checkbox>
+<mat-divider ></mat-divider>
+<!-- Copyright 2023 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->
