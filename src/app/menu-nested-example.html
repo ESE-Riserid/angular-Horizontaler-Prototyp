@@ -1,5 +1,5 @@
-<button mat-button [matMenuTriggerFor]="Admin">Administration</button>
-<button mat-button [matMenuTriggerFor]="Admin">Menüpunkt 2</button>
+<button mat-button [matMenuTriggerFor]="Admin"><h1>Administration</h1></button>
+<button mat-button [matMenuTriggerFor]="Admin"><h1>Menüpunkt 2</h1></button>
 
 <!-- #docregion sub-menu -->
 <mat-menu #Admin="matMenu">
@@ -37,24 +37,104 @@
 <mat-menu #u1="matMenu">
   <button mat-menu-item>...</button>
 </mat-menu>
-<mat-divider ></mat-divider>
-<label> Im Prototyp müssen Menüs abbildbar sein. Das sind entweder Dialogmenüs wie in der Abbildung oder Kontextmenüs in z.B. Tabellen.
-Es müssen Menübäume/mehrstufige Menüs erstellt werden können.
-Die Menüpunkte müssen zur Laufzeit aktiviert/deaktiviert werden können.
-Es müssen Separatoren für die thematische Aufteilung eines Menüs vorhanden sein.
-</label>
-<mat-divider ></mat-divider>
-<label>
-Testfall:
-Eine GUI und eine Tabelle wird mit einem Menü versehen.
-Die Menüs enthalten mind. ein Submenü.
-Auf jeder Menü-Ebene ist mind. ein Eintrag deaktiviert.
-Über eine Checkbox im Dialog kann die Aktivierung/Deaktivierung der Menüeinträge gesteuert werden. </label>
-<mat-divider ></mat-divider>
+<mat-divider></mat-divider>
+<h3>Menüsteuerung über Checkboxes oder Buttons</h3>
 <label> Schalte zusätliche Menüpunkte ein </label>
 <button (click)="toggleData()">Click</button>
 <mat-checkbox [(ngModel)]="toDisplay">Verstecktes Objekt an </mat-checkbox>
-<mat-divider ></mat-divider>
+<mat-divider class="border"></mat-divider>
+<h3>Anforderungsbeschreibung der Menu Bar</h3>
+<p>
+  <label style="line-height: 30px">
+    Im Prototyp müssen Menüs abbildbar sein. Das sind entweder Dialogmenüs wie
+    in der Abbildung oder Kontextmenüs in z.B. Tabellen. Es müssen
+    Menübäume/mehrstufige Menüs erstellt werden können. Die Menüpunkte müssen
+    zur Laufzeit aktiviert/deaktiviert werden können. Es müssen Separatoren für
+    die thematische Aufteilung eines Menüs vorhanden sein.
+  </label>
+</p>
+<p>
+  <label style="line-height: 30px">
+    Testfall: Eine GUI und eine Tabelle wird mit einem Menü versehen. Die Menüs
+    enthalten mind. ein Submenü. Auf jeder Menü-Ebene ist mind. ein Eintrag
+    deaktiviert. Über eine Checkbox im Dialog kann die Aktivierung/Deaktivierung
+    der Menüeinträge gesteuert werden.
+  </label>
+</p>
+<h3>Anforderungsbeschreibung der Textfelder</h3>
+<p>
+  <label style="line-height: 30px">
+    Der Prototyp muss Labels und Textfelder enthalten. Die Textfelder müssen zur
+    Laufzeit aktiviert/deaktiviert werden können. Die Textfelder müssen
+    Formate/Typen unterstützen
+    <mat-list>
+      <mat-list-item>Textfelder</mat-list-item>
+      <mat-form-field>
+        <input matInput />
+      </mat-form-field>
+      <mat-list-item>mehrzeilige Textfelder</mat-list-item>
+      <mat-form-field>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <mat-list-item
+        >numerische Textfelder in unterschiedlichen Eingabeformaten (z.B.
+        Währung, ganze Zahl)</mat-list-item
+      >
+      <p>
+        <mat-form-field>
+          <input matInput type="number" inputmode="tel" placeholder="0" />
+        </mat-form-field>
+      </p>
+      <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" style="" placeholder="0" />
+        <span matTextSuffix>€&nbsp;</span>
+      </mat-form-field>
+
+      <mat-list-item>Textfelder zur Erfassung eines Datums</mat-list-item>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-list-item
+        >Textfelder müssen als Pflichtfelder gekennzeichnet werden
+        können.</mat-list-item
+      >
+      <mat-form-field>
+        <mat-label>Pflichtfeld -> </mat-label>
+        <input matInput required />
+      </mat-form-field>
+      <mat-list-item
+        >Die Textfelder müssen zur Laufzeit mit Werten befüllt werden
+        können.</mat-list-item
+      >
+      <button (click)="fill1()">1.Wert</button>
+      <button (click)="fill2()">2.Wert</button>
+      <mat-checkbox [(ngModel)]="textOn">Verstecktes Feld </mat-checkbox>
+      <form [formGroup]="form">
+        <div *ngIf="textOn">
+          <mat-form-field>
+            <input matInput formControlName="field" />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-list>
+  </label>
+</p>
+<p>
+  Testfall: Eine GUI erstellen, welche je ein Textfeld pro Format/Typ enthält,
+  jedes Textfeld hat einen Label. Neben jedem Textfeld ist eine Checkbox mit
+  deren Hilfe das Textfeld aktiviert/deaktiviert werden kann. Bei der
+  Aktivierung des Textfeldes wird dieses mit einem vorher festgelegten Inhalt
+  befüllt. Bei der Deaktivierung des Textfeldes wird der Inhalt entfernt.
+</p>
+<mat-divider></mat-divider>
 <!-- Copyright 2023 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at https://angular.io/license -->
